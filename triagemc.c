@@ -9,11 +9,11 @@ struct pessoa{
 };
 struct pessoa paciente;
 	int totalPontos,sintomasPontos[10]={5,1,1,1,3,10,1,1,10,3};
-	char sintomasDescricao[10][200]={"Tem febre?","Tem dor de cabeça?","Tem secreção nasal ou espirros?","Tem dor/irritação na garganta?","Tem tosse seca?","Tem dificuladade respiratória?","Tem dores no corpo?","Tem diarréia?","Esteve em contato com alguém, positivado COVID-19 nos últomos 14 dias?","Esteve em locais com grande aglomeração?"};
+	char sintomasDescricao[10][200]={"Tem febre?","Tem dor de cabeÃ§a?","Tem secreÃ§Ã£o nasal ou espirros?","Tem dor/irritaÃ§Ã£o na garganta?","Tem tosse seca?","Tem dificuladade respiratÃ³ria?","Tem dores no corpo?","Tem diarrÃ©ia?","Esteve em contato com alguÃ©m, positivado COVID-19 nos Ãºltomos 14 dias?","Esteve em locais com grande aglomeraÃ§Ã£o?"};
 cadastro_paciente(){
-    printf("Informe seu CPF: ");
+    printf("\nInforme seu CPF: ");
     scanf("%s",&paciente.cpf);
-    fflush(stdin);//limpa o cache antes da próxima entrada;
+    fflush(stdin);//limpa o cache antes da prÃ³xima entrada;
     printf("\nInforme seu Nome: ");
     gets(paciente.nome);
     printf("\nInforme seu Secso:\n Masculino (m) | Feminino (f) ");
@@ -25,14 +25,14 @@ cadastro_paciente(){
     printf("\nNome: %s",paciente.nome);
     printf("\nCpf: %s",paciente.cpf);
     printf("\nSecso: %s",paciente.sexo);
-    printf("\nIdade: %d",paciente.idade);
+    printf("\nIdade: %d\n",paciente.idade);
     system("pause");
 }
 questionario(){
 	int x=0;
 	char resposta;
 	while(x < 10){
-		printf("\n%s Sim (s) | Não (n)\n", &sintomasDescricao[x]);
+		printf("\n%s Sim (s) | NÃ£o (n)\n", &sintomasDescricao[x]);
 		fflush(stdin);
 		scanf("%c", &resposta);
 		if(resposta == 's' || resposta == 'S'){
@@ -41,24 +41,29 @@ questionario(){
 		}else if(resposta == 'n' || resposta == 'N'){
 			x++;
 		}else{
-			printf("\n Valor inválido, tente novamente....");
+			printf("\n Valor invÃ¡lido, tente novamente....");
 		}
 	}
 }
 int main(){
     setlocale(LC_ALL,"portuguese");
     cadastro_paciente();
-    system("cls");
-    questionario();
-    system("cls");
-    printf("%d",totalPontos);
-	printf("\n O total de pontos é de %d", totalPontos);
-	if(totalPontos <= 9){
-		printf("\nEmcaminhe-se para a ala de RISCO BAIXO");
-	}else if(totalPontos >= 20){
-		printf("\nEncaminhe-se COM URGENCIA para a ala de RISCO ALTO");
-	}else{
-		printf("\nEncaminhe-se para a ala de RISCO MÉDIO");
+    while(paciente.cpf != 0){
+	    system("cls");
+	    questionario();
+	    system("cls");
+	    printf("%d",totalPontos);
+		printf("\nO total de pontos Ã© de %d", totalPontos);
+		if(totalPontos <= 9){
+			printf("\nEmcaminhe-se para a ala de RISCO BAIXO\n");
+		}else if(totalPontos >= 20){
+			printf("\nEncaminhe-se COM URGENCIA para a ala de RISCO ALTO\n");
+		}else{
+			printf("\nEncaminhe-se para a ala de RISCO MÃ‰DIO\n");
+		}
+		system("pause");
+		system("cls");
+		cadastro_paciente();
 	}
     return 0;
 }
